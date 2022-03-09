@@ -4,5 +4,8 @@ services:
     build: .
     tty: true
     container_name: mikanos
+    privileged: true
+    ports:
+      - "6080:6080"
     volumes:
       - ./src:/home/vscode/src
