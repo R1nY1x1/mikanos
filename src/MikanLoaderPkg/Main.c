@@ -392,9 +392,12 @@ EFI_STATUS EFIAPI UefiMain(EFI_HANDLE image_handle, EFI_SYSTEM_TABLE *system_tab
       Halt();
   }
 
-  typedef void EntryPointType(const struct FrameBufferConfig*);
+  typedef void EntryPointType(
+    const struct FrameBufferConfig*,
+    const struct MemoryMap*
+  );
   EntryPointType* entry_point = (EntryPointType*)entry_addr;
-  entry_point(&config);
+  entry_point(&config, &memmap);
 
   Print(L"All done\n");
 
